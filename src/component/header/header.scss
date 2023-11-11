@@ -1,0 +1,55 @@
+header{
+    display: flex;
+    height: 10.5vh;
+    justify-content: space-between;
+    padding-left: 6%;
+    padding-right: 6%;
+    border-bottom: 2px solid #F0F3F4;
+    ;
+    
+    #logo{
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 12%;
+        height:7vh;
+        cursor: pointer;
+    }
+    .links{
+        display: flex;
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 100%;
+        width: 18%;
+        justify-content: space-between;
+        
+        .lnk{
+            margin-top: auto;
+            margin-bottom: auto;
+            font-family: 'Sora', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #141414;
+            cursor: pointer;
+           
+        }
+        .lnk:active {
+            color: #100A4230;
+            
+        }
+
+    }
+    .get{
+        color: #120B48;
+        font-family: 'Sora', sans-serif;
+        font-weight: 600;
+        font-size: 1.125rem;
+        margin-top: auto;
+        margin-bottom: auto;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .get:active {
+        color: #100A4230;
+        
+    }
+}

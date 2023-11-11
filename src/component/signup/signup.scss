@@ -1,0 +1,142 @@
+
+.sign-up{
+    width: 40%;
+    margin: auto;
+    
+    .create{
+        font-family: 'Inter', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 48px;
+        letter-spacing: 0.01em;
+        color: #141414;
+        text-align: center;
+        margin-top: 0;
+
+    }
+    .invite{
+        font-family: 'Sen';
+        font-size: 0.88rem;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0.01em;
+        text-align: center;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .btn{
+        border: 2px solid #141414;
+        border-radius: 12px;
+        width: 100%;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        height: 48px;
+        
+        .wrap{
+            margin-top: auto;
+            margin-bottom: auto;
+            .icnz, .icn {
+                height: 25px;
+                width: 25px;
+                margin-top: 0.5vh;
+            }
+        }
+        p{
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 0.01em;
+            text-align: left;
+            margin-left: 3%;
+            margin-top: auto;
+            margin-bottom: auto;
+
+        }
+    }
+    .fb{
+        margin-top: 2vh;
+    }
+    .lines{
+        display: flex;
+        margin-top: 3vh;
+        hr{
+            width: 40%;
+            height: 0.3%;
+            color: #B9C2C8;
+
+        }
+        p{
+            margin-top: -0.5vh;
+            color: #B9C2C8;
+            margin-left: -5%;
+            margin-right: -5%;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            line-height: 21px;
+            letter-spacing: 0.01em;
+
+
+        }
+    
+    }
+    .forms{
+        padding-top: 0;
+        
+        .tag{
+            color: #141414;
+            margin-left: 0;
+            font-size: 0.88rem;
+            font-weight: 500;
+            font-family: 'Work Sans', sans-serif;
+            line-height: 16px;
+            letter-spacing: 0em;
+            text-align: left;
+            
+
+
+        }
+        .input{
+            width: 100%;
+            height: 51px;
+            border-radius: 12px;
+            border: 2px solid #B9C2C8;
+            margin-top: 2vh;
+            margin-bottom: 2vh;
+            &::placeholder{
+                color: #626262;
+                font-size: 1rem;
+                padding-left: 3%;
+                padding-right: 3%;
+                font-weight: 500;
+                font-family: 'Work Sans', sans-serif;
+                line-height: 19px;
+                letter-spacing: 0em;
+                text-align: left;
+                
+
+            }
+        }
+        button{
+            background-color: #120B48;
+            color: #F9F9FF;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 500;
+            border-radius: 12px;
+            height: 53px;
+            width: 100%;
+            border: none;
+            margin-top: 2vh;
+            font-size: 1.125rem;
+            line-height: 21px;
+            letter-spacing: 0em;
+
+
+
+
+        }
+    }
+}
