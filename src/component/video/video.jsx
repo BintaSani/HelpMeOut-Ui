@@ -91,7 +91,7 @@ const Video = () => {
                 controls={false} 
                 onClick={togglePlay}
                 onTimeUpdate={handleProgress}
-                // src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.mp4" }
+                src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.mp4" }
                 onError={(e) => setError(e)}
                 >
                 <source src="/SampleVideo_1280x720_1mb.mp4" type='video/mp4'/>
