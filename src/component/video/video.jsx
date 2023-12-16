@@ -91,12 +91,11 @@ const Video = () => {
                 controls={false} 
                 onClick={togglePlay}
                 onTimeUpdate={handleProgress}
-                src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.mp4" }
                 onError={(e) => setError(e)}
                 >
-                <source src="/SampleVideo_1280x720_1mb.mp4" type='video/mp4'/>
-                <source src="./SampleVideo_1280x720_1mb.ogg" type="video/Ogg" />
-                <source src="./SampleVideo_1280x720_1mb.webm" type="video/webM" />
+                <source src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.mp4" } /*src="/SampleVideo_1280x720_1mb.mp4"*/ type='video/mp4'/>
+                <source src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.ogg" } /*src="./SampleVideo_1280x720_1mb.ogg"*/ type="video/Ogg" />
+                <source src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.webm" } /*src="./SampleVideo_1280x720_1mb.webm"*/ type="video/webM" />
                 Your browser does not support the video tag.
                 {error && console.log(error.message)}
             </video>
