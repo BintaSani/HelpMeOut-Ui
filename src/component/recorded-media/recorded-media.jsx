@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ReactComponent as Edit } from '../../assets/edit.svg';
 import { ReactComponent as Copy } from '../../assets/copy.svg';
 import { ReactComponent as FB } from '../../assets/Facebook svg.svg';
@@ -12,13 +12,32 @@ import Video from '../video/video';
 
 
 const RecordedMedia = () => {
-    // const [disabled, setDisabled] = useState(true)
-    // const [filename, setFilename] = useState(() =>
-    //     window.location.search('filename')
-    // );
+    const [disabled, setDisabled] = useState(true);
+    const [searchParams] = useSearchParams();
+    const FileName = searchParams.get('filename');
+    const playBack = searchParams.get('recording')
+    const [filename, setFilename] = useState(() =>
+        // window.location.search('filename')
+        FileName ? FileName : ''
+    );
     // const [playbackUrl, setPlaybackUrl] = useState(
     //     window.location.search('recording')
     // );
+    const copyVideo = async (url) => {
+        if (navigator.clipboard) {
+          await navigator.clipboard
+            .writeText(url)
+            .then(function () {
+              alert('URL copied to clipboard')
+            })
+            .catch(function (err) {
+              console.error('Failed to copy URL: ' + err);
+            });
+        } else {
+          console.log("can't copy on this device");
+        }
+      }
+    
     return(
         <div className='recorded-media'>
             <Header/>
@@ -29,12 +48,12 @@ const RecordedMedia = () => {
                         <label htmlFor='edit'>Name</label>
                         <div className='edit-cont'>
                             <input 
-                            // disabled={disabled}
-                            // defaultValue={`${filename}`}
-                            placeholder='Untitled_Video_20232509'
+                            disabled={disabled}
+                            defaultValue={`${filename}`}
+                            placeholder='HelpMeOut_Video_20232509'
                             type='text' id='edit'/>
-                            <div>
-                                <Edit/>
+                            <div className='edit-icons'>
+                                <Edit onClick={() => setDisabled(!disabled)}/>
                             </div>
                         </div>
                         
@@ -52,10 +71,10 @@ const RecordedMedia = () => {
                         <label htmlFor='link'>Video Url</label>
                         <div className='link-cont'>
                             <input 
-                            placeholder='https://www.helpmeout/Untitled_Video_20232509'
+                            placeholder={playBack ? playBack : 'https://www.helpmeout/HelpMeOut_Video_20232509'}
                             type='link' id='link'/>
                             <button>
-                            <Copy/> Copy
+                            <Copy onClick={() => copyVideo(playBack ? playBack : '')}/> Copy
                             </button>
                         </div>
                         

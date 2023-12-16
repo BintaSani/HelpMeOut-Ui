@@ -1,11 +1,11 @@
-import React, {  useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ReactComponent as PlayPause } from '../../assets/play-circle.svg';
 import { ReactComponent as PausePlay } from '../../assets/pause-circle.svg';
 import { ReactComponent as Volume } from '../../assets/volume-high.svg';
 import { ReactComponent as Mute } from '../../assets/volume-mute.svg';
 import { ReactComponent as Settings } from '../../assets/setting.svg';
 import './video.scss';
-// import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const Video = () => {
     const videoRef = useRef(null);
@@ -15,9 +15,10 @@ const Video = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [error, setError] = useState(null);
-    // const searchParams = useSearchParams().get("recording");
-    // const [videoSrc, setVideoSrc] = useState( searchParams ? searchParams : "");
-
+    const [searchParams] = useSearchParams(window.location.search);
+    const recording = searchParams.get('recording');
+    // const transcriptParams = new useSearchParams(window.location.search).get("transcript");
+    const [videoSrc, setVideoSrc] = useState( recording ? recording : '');
 
     const togglePlay = () => {
         const video = videoRef.current;
@@ -76,12 +77,12 @@ const Video = () => {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
-    // useEffect(() => {
-    //     if(searchParams) {
-    //       setVideoSrc(searchParams)
-    //     }
-    //     // fetchTranscript()
-    //   }, [searchParams])
+    useEffect(() => {
+        if(searchParams) {
+          setVideoSrc(searchParams)
+        }
+        // fetchTranscript()
+      }, [searchParams])
 
     return(
         <div className='video'>
@@ -90,7 +91,7 @@ const Video = () => {
                 controls={false} 
                 onClick={togglePlay}
                 onTimeUpdate={handleProgress}
-                // src={videoSrc}
+                // src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.mp4" }
                 onError={(e) => setError(e)}
                 >
                 <source src="/SampleVideo_1280x720_1mb.mp4" type='video/mp4'/>

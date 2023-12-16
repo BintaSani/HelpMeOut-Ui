@@ -2,14 +2,17 @@ import React from 'react';
 import {ReactComponent as Logo} from '../../assets/Frame 249.svg';
 import './header.scss';
 import { Link } from 'react-scroll';
-import { Link as Links } from 'react-router-dom';
+import { Link as Links, useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/')
+    }
     return(
     <div>
         <header>
-            <Logo/>
+            <Logo onClick={handleClick}/>
             <div className='links'>
                <Link 
                to="features" smooth={true} offset={-48} duration={500}

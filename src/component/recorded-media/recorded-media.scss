@@ -29,7 +29,7 @@
 
                 }
                 .edit-cont{
-                    
+                    height: 6vh;
                     display: flex;
                     margin-top: 2vh;
                     justify-content: space-between;
@@ -40,6 +40,13 @@
                         width: 85%;
                         height: 3.6vh;
                         margin-top: 1vh;
+                        font-family: 'Sora', sans-serif;
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        line-height: 30px;
+                        letter-spacing: 0em;
+                        text-align: left;
+                        color: #413C6D;
                         &::placeholder{
                             font-family: 'Sora', sans-serif;
                             font-size: 1.5rem;
@@ -52,11 +59,16 @@
 
                         }
                     }
-                    .edit-icon{
-                        width: 30px;
-                        height: 30px;
+                    .edit-icons{
+                        height: 3.8vh;
                         margin-top: auto;
                         margin-bottom: auto;
+                        .edit-icon{
+                            width: 30px;
+                            height: 30px;
+                            margin-top: auto;
+                            margin-bottom: auto;
+                        }
                     }
                 }
             }
@@ -98,7 +110,9 @@
                     letter-spacing: 0em;
                     color: #ffffff;
                     border: none;
-                    margin-left: -15%;
+                    margin-left: -14%;
+                    margin-top: auto;
+                    margin-bottom: auto;
 
                 }
             }
@@ -147,8 +161,10 @@
                     letter-spacing: 0em;
                     color:#120B48;
                     border: none;
-                    margin-left: -15%;
-                    border: 1.5px solid #120B48
+                    margin-left: -14%;
+                    border: 1.5px solid #120B48;
+                    margin-top: auto;
+                    margin-bottom: auto;
 
                     
                 }
