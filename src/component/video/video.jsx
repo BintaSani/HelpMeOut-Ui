@@ -78,11 +78,11 @@ const Video = () => {
     };
 
     useEffect(() => {
-        if(searchParams) {
-          setVideoSrc(searchParams)
+        if(recording) {
+          setVideoSrc(recording)
         }
         // fetchTranscript()
-      }, [searchParams])
+      }, [recording])
 
     return(
         <div className='video'>
