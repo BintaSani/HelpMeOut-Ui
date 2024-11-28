@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { ReactComponent as PlayPause } from '../../assets/play-circle.svg';
 import { ReactComponent as PausePlay } from '../../assets/pause-circle.svg';
 import { ReactComponent as Volume } from '../../assets/volume-high.svg';
 import { ReactComponent as Mute } from '../../assets/volume-mute.svg';
 import { ReactComponent as Settings } from '../../assets/setting.svg';
 import './video.scss';
-import { useSearchParams } from 'react-router-dom';
 
-const Video = () => {
+const Video = ({source}) => {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [isMuted, setIsMuted] = useState(false);
@@ -15,10 +14,10 @@ const Video = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [error, setError] = useState(null);
-    const [searchParams] = useSearchParams(window.location.search);
-    const recording = searchParams.get('recording');
+    // const [searchParams] = useSearchParams(window.location.search);
+    // const recording = searchParams.get('recording');
     // const transcriptParams = new useSearchParams(window.location.search).get("transcript");
-    const [videoSrc, setVideoSrc] = useState( recording ? recording : '');
+    // const [videoSrc, setVideoSrc] = useState( recording ? recording : '');
 
     const togglePlay = () => {
         const video = videoRef.current;
@@ -77,12 +76,12 @@ const Video = () => {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
-    useEffect(() => {
-        if(recording) {
-          setVideoSrc(recording)
-        }
-        // fetchTranscript()
-      }, [recording])
+    // useEffect(() => {
+    //     if(recording) {
+    //       setVideoSrc(recording)
+    //     }
+    //     // fetchTranscript()
+    //   }, [recording])
 
     return(
         <div className='video'>
@@ -93,9 +92,9 @@ const Video = () => {
                 onTimeUpdate={handleProgress}
                 onError={(e) => setError(e)}
                 >
-                <source src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.mp4" } /*src="/SampleVideo_1280x720_1mb.mp4"*/ type='video/mp4'/>
-                <source src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.ogg" } /*src="./SampleVideo_1280x720_1mb.ogg"*/ type="video/Ogg" />
-                <source src={videoSrc ? videoSrc : "/SampleVideo_1280x720_1mb.webm" } /*src="./SampleVideo_1280x720_1mb.webm"*/ type="video/webM" />
+                <source src={source ? source : "/SampleVideo_1280x720_1mb.mp4" } /*src="/SampleVideo_1280x720_1mb.mp4"*/ type='video/mp4'/>
+                <source src={source ? source : "/SampleVideo_1280x720_1mb.ogg" } /*src="./SampleVideo_1280x720_1mb.ogg"*/ type="video/Ogg" />
+                <source src={source ? source : "/SampleVideo_1280x720_1mb.webm" } /*src="./SampleVideo_1280x720_1mb.webm"*/ type="video/webM" />
                 Your browser does not support the video tag.
                 {error && console.log(error.message)}
             </video>
