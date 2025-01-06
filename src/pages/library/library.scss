@@ -1,0 +1,77 @@
+.media-library-page{
+    overflow-y: hidden;
+    height: 100vh;
+    .help{
+        margin-top: 6vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 6%;
+        margin-right: 6%;
+       #logo{
+        width: 12%;
+        height:7vh;
+        cursor: pointer;
+       } 
+       .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    
+        &__avatar {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    
+        &__username {
+            font-weight: 400;
+            color: #141414;
+            font-size: 16px;
+            font-family: 'Work Sans', sans-serif;
+        }
+    
+        &__dropdown-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            color: #666;
+        }
+    }
+    
+    }
+}
+
+.spinner-overlay {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-container {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #383636;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

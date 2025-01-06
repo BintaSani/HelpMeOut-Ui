@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { ReactComponent as Google } from '../../assets/Google svg.svg';
 import { ReactComponent as FaceBook } from '../../assets/Facebook svg.svg';
+import { useNavigate } from 'react-router-dom';
 import './signup.scss';
 import { CreateUserProfileDocument, SignInWithFacebook, SignInWithGoogle, auth } from '../utils/firebase/firebase';
 
 const SignUp = () => {
+    const navigate = useNavigate();
     const [userCredentials, setCredentials] = useState({
         email: '',
         password: ''
@@ -22,6 +24,8 @@ const SignUp = () => {
                 email: '',
                 password: ''
             })
+            navigate('/library');
+            console.log(user);
         } catch (error){
             console.log('Error creating account: ' + error.message)
         }
@@ -35,8 +39,8 @@ const SignUp = () => {
         <div className='sign-up'>
             <h1 className='create'>Log in or Sign up</h1>
             <p className='invite'>Join millions of others in sharing successful moves on HelpMeOut.</p>
-            <button className='google btn' onClick={SignInWithGoogle} ><div className='wrap'><Google/></div><p>Continue with Google</p></button>
-            <button className='fb btn'onClick={SignInWithFacebook}><div className='wrap'><FaceBook/></div><p>Continue with Facebook</p></button>
+            <button className='google btn' onClick={() => SignInWithGoogle(navigate)} ><div className='wrap'><Google/></div><p>Continue with Google</p></button>
+            <button className='fb btn'onClick={() => SignInWithFacebook(navigate)}><div className='wrap'><FaceBook/></div><p>Continue with Facebook</p></button>
             <div className='lines'>
                 <hr></hr>
                 <p>or</p>

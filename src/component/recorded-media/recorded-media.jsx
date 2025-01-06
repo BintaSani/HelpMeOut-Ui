@@ -132,7 +132,7 @@ const RecordedMedia = () => {
           
           try {
                 
-            const revaiResponse =await fetch('http://localhost:5000/transcribe', {
+            const revaiResponse =await fetch('https://helpmeout-be.vercel.app/transcribe', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ playBack }),
@@ -149,7 +149,7 @@ const RecordedMedia = () => {
          
             // URL for fetching the transcript
             
-            const url = `http://localhost:5000/transcript/${jobId}?language=${language}`;
+            const url = `https://helpmeout-be.vercel.app/transcript/${jobId}?language=${language}`;
     
             // Fetch the transcript text
             const response = await fetch(url);
@@ -202,12 +202,12 @@ const RecordedMedia = () => {
         // }
       }, [language, playBack ]); // Dependencies: language and transcription
       
-      const renameVideo = async (oldPublicId, newPublicId) => {
+      const renameVideo = async (publicId, newName) => {
         try {
-          const response = await fetch('http://localhost:5000/rename-video', {
-            method: 'POST',
+          const response = await fetch('https://helpmeout-be.vercel.app/api/videos/rename', {
+            method: 'PUT', // Change to PUT method as per your backend
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ oldPublicId, newPublicId }),
+            body: JSON.stringify({ public_id: publicId, new_name: newName }), // Send correct fields
           });
       
           if (!response.ok) {
@@ -215,7 +215,8 @@ const RecordedMedia = () => {
           }
       
           const result = await response.json();
-          console.log('Rename Successful:', result);
+          // console.log('Rename Successful:', result);
+          alert('Rename Successful');
         } catch (error) {
           console.error('Error renaming video:', error);
         }
@@ -236,7 +237,7 @@ const RecordedMedia = () => {
                         <div className='edit-cont'>
                             <input 
                             disabled={disabled}
-                            value={disabled ? filename.replace(/^uploads\/[^/]+\//, "") : newVideoName}
+                            value={disabled ? filename.replace(/^HMO_([^/]+)\/[^/]+\/([^/]+\.webm)$/, 'HMO_$2') : newVideoName}
                             onChange={handleInputChange}
                             placeholder='HelpMeOut_Video_20232509'
                             type='text' id='edit'/>
@@ -244,7 +245,7 @@ const RecordedMedia = () => {
                               { disabled === true ?
                                 <Edit onClick={() => setDisabled(!disabled)}/> :
                                 <button onClick={() => { 
-                                  renameVideo(filename.replace('.webm', ''), newVideoName);
+                                  renameVideo(filename.replace(/^HMO_/, '').replace(/\.webm$/, ''), newVideoName);
                                   setDisabled(true);}}>
                                   Save
                               </button>}
