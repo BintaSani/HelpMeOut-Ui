@@ -5,7 +5,7 @@ import { ReactComponent as Copy } from '../../assets/copy.svg';
 import { ReactComponent as FB } from '../../assets/Facebook svg.svg';
 import { ReactComponent as WhatsaApp } from '../../assets/whatsapp.svg';
 import { ReactComponent as Telegram } from '../../assets/Telegram svg.svg';
-import axios from 'axios';
+// import axios from 'axios';
 import './recorded-media.scss';
 import Header from '../header/header';
 import Footer from '../footer/footer';
@@ -214,7 +214,7 @@ const RecordedMedia = () => {
             throw new Error('Failed to rename video');
           }
       
-          const result = await response.json();
+          // const result = await response.json();
           // console.log('Rename Successful:', result);
           alert('Rename Successful');
         } catch (error) {
