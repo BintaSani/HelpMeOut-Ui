@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.433b07aa.css",
+    "main.js": "/static/js/main.24e9481b.js",
+    "static/js/787.ca9d784f.chunk.js": "/static/js/787.ca9d784f.chunk.js",
+    "static/media/Video Repository.svg": "/static/media/Video Repository.329792fa457cad7ce3c5d3020d525ec4.svg",
+    "static/media/rec.svg": "/static/media/rec.0e4b8ca4853c3bd7643656483382f697.svg",
+    "static/media/Frame 249.svg": "/static/media/Frame 249.0a411383860f3be09b0c4376560a490a.svg",
+    "static/media/Frame.svg": "/static/media/Frame.dec6561327e26d408c52e403460f85e1.svg",
+    "index.html": "/index.html",
+    "static/media/volume-high.svg": "/static/media/volume-high.1f1266852920033163af8d1d8955e715.svg",
+    "static/media/revisit.svg": "/static/media/revisit.65fb15311641989ad933b100c3e08486.svg",
+    "static/media/Icon2.svg": "/static/media/Icon2.2640663ff828388289268f19edc837c4.svg",
+    "static/media/Telegram svg.svg": "/static/media/Telegram svg.38c3b673e882520a3caa1ae8007e0948.svg",
+    "static/media/whatsapp.svg": "/static/media/whatsapp.7a92df039e10c1bc5f93859037a0bffc.svg",
+    "static/media/play-circle.svg": "/static/media/play-circle.089a8efde94126bbfadaaee42b150dc0.svg",
+    "static/media/setting.svg": "/static/media/setting.030ba4b124d6c462855051cfbcc62b82.svg",
+    "static/media/Icon1.svg": "/static/media/Icon1.8275a2a58738a2b174a76f39ca48ed1a.svg",
+    "static/media/Facebook svg.svg": "/static/media/Facebook svg.820cb1e16f99a3920f9c672a6efae585.svg",
+    "static/media/pause-circle.svg": "/static/media/pause-circle.640c863cbc80612c4473afe50cc2c082.svg",
+    "static/media/Google svg.svg": "/static/media/Google svg.25a6749bd688fd5724eab784a46ee796.svg",
+    "static/media/edit.svg": "/static/media/edit.0d195545f472e1a7bae09dfeee8b30ba.svg",
+    "static/media/copy.svg": "/static/media/copy.42a05be3d8708ea1e1b2243d356a48d1.svg",
+    "static/media/volume-mute.svg": "/static/media/volume-mute.4a8f75c62763e63d72ccf8c901a9a924.svg",
+    "static/media/share.svg": "/static/media/share.96bb983584e16bc4de47d0c847868d82.svg",
+    "static/media/record.svg": "/static/media/record.ddf9236a2c04a92754c9fe982ea24fd0.svg",
+    "static/media/link.svg": "/static/media/link.6a327bcc2821794542aa1d6a0592e59a.svg",
+    "static/media/search.svg": "/static/media/search.03aaef1be873120d32336b58eec404e9.svg",
+    "static/media/option.svg": "/static/media/option.0e34ae446f6a6f2a47c358a751c078cd.svg",
+    "static/media/Icon3.svg": "/static/media/Icon3.e8f77ab7aa2e23286b40621cc44bd3f6.svg",
+    "main.433b07aa.css.map": "/static/css/main.433b07aa.css.map",
+    "main.24e9481b.js.map": "/static/js/main.24e9481b.js.map",
+    "787.ca9d784f.chunk.js.map": "/static/js/787.ca9d784f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.433b07aa.css",
+    "static/js/main.24e9481b.js"
+  ]
+}
