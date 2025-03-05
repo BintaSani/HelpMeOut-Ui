@@ -104,7 +104,7 @@ const Video = ({source}) => {
             </div>
             <div className='controls'>
                 <div className='run-time'>
-                    <h3>{formatTime(currentTime)} / {formatTime(duration)}</h3>
+                    <h3>{formatTime(currentTime)} / {formatTime(duration) || '00:00'}</h3>
                 </div>
                 <div className='clicks'>
                     <div className='click' onClick={togglePlay}>

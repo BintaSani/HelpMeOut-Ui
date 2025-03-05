@@ -151,6 +151,7 @@
 
         .send-cont{
             // border: solid 1px black;
+            position: relative;
             display: flex;
             width: 45%;
             input{
@@ -188,14 +189,14 @@
                 letter-spacing: 0em;
                 color: #ffffff;
                 border: none;
-                margin-left: -14%;
-                margin-top: auto;
-                margin-bottom: auto;
+                position: absolute;
+                right: 10px;
+               top: 6px;
 
             }
         }
         .video-url{
-            // border: solid 1px black;
+            position: relative;
             display: flex;
             width: 45%;
             input{
@@ -232,9 +233,9 @@
                 letter-spacing: 0em;
                 color: #120B48;
                 border: none;
-                margin-left: -14%;
-                margin-top: auto;
-                margin-bottom: auto;
+                position: absolute;
+                right: 10px;
+                top: 6px;
 
             }
         }

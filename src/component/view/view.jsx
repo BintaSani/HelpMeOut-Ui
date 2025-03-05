@@ -18,7 +18,13 @@ function View() {
     const [transcript, setTranscript] = useState(null);
     const [translatedTranscript, setTranslatedTranscript] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-
+    const [recipientEmail, setRecipientEmail] = useState('');
+    
+        const handleSendEmail = () => {
+          const subject = encodeURIComponent('Check out this video!');
+          const body = encodeURIComponent(`Hi there, Here is a video I thought you might enjoy: ${playBack} \nBest regards,`);
+          window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+        };
     const handleLanguageChange = (event) => {
         setLanguage(event.target.value);
         };
@@ -202,22 +208,24 @@ function View() {
                     <span className='text'>{translatedTranscript || "No transcript available"}</span>
                 )}
             </div>
-            <div className='three subtitle'>
+            {/* <div className='three subtitle'>
                 <span>0.03</span>
                 <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span>
             </div>
             <div className='four subtitle'>
                 <span>0.04</span>
                 <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span>
-            </div>
+            </div> */}
             
         </div>
         <div className='share-wrapper'>
             <div className='send-cont'>
                 <input 
                 placeholder='enter email of receiver'
-                type='email' id='email'/>
-                <button>
+                type='email' id='email'
+                value={recipientEmail}
+                onChange={(e) => setRecipientEmail(e.target.value)}/>
+                <button onClick={handleSendEmail} >
                     Send
                 </button>
                     

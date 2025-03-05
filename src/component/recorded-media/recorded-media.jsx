@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import {  useSearchParams } from 'react-router-dom';
 import { ReactComponent as Edit } from '../../assets/edit.svg';
 import { ReactComponent as Copy } from '../../assets/copy.svg';
 import { ReactComponent as FB } from '../../assets/Facebook svg.svg';
@@ -13,20 +13,22 @@ import Video from '../video/video';
 
 
 const RecordedMedia = () => {
-    const [disabled, setDisabled] = useState(true);
-    const [newVideoName, setNewVideoName] = useState('');
-    const [searchParams] = useSearchParams();
-    const FileName = searchParams.get('filename');
-    const playBack = searchParams.get('recording');
-    // const transcription = searchParams.get('transcript');
-    const [transcript, setTranscript] = useState(null);
-    const [translatedTranscript, setTranslatedTranscript] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [language, setLanguage] = useState('en'); // Default language is English
+  const [disabled, setDisabled] = useState(true);
+  const [newVideoName, setNewVideoName] = useState('');
+  const [searchParams] = useSearchParams();
+  const FileName = searchParams.get('filename');
+  const playBack = searchParams.get('recording');
+  // const transcription = searchParams.get('transcript');
+  const [transcript, setTranscript] = useState(null);
+  const [translatedTranscript, setTranslatedTranscript] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [language, setLanguage] = useState('en'); // Default language is English
+  const [recipientEmail, setRecipientEmail] = useState('');
     const [filename, setFilename] = useState(() =>
         // window.location.search('filename')
         FileName ? FileName : ''
     );
+    
 
     const handleLanguageChange = (event) => {
       setLanguage(event.target.value);
@@ -47,78 +49,13 @@ const RecordedMedia = () => {
         }
       }
     
-    //   useEffect(() => {
-    //     const jobId = transcription || 'nbsTU2yd9BCHPlJE';
-    //     const fetchTranscript = async () => {
-    //         try{
-                
-    //             const url = `http://localhost:5000/transcript/${jobId}?language=${language}`;
-    //             const translateUrl = `https://lingvanex-translate.p.rapidapi.com/getLanguages?code=en_GB&platform=api`;
-    //             const options = {
-    //                 method: 'GET',
-    //                 headers: {
-    //                     'x-rapidapi-key': '46798f9a4fmsh0d936877c36ca89p1dd365jsnf0a71eaeb637',
-    //                     'x-rapidapi-host': 'lingvanex-translate.p.rapidapi.com'
-    //                 }
-    //             };
-    //             const response = await fetch(url);
-    //             const text = await response.text();  // Get the response as plain text
-    //             setTranscript(text);
-    //             console.log(response);
-    //             if (language !== "en") {
-    //                 const translationResponse = await axios.post(
-    //                   translateUrl,
-    //                   {
-    //                     q: text,
-    //                     source: "en",
-    //                     target: language,
-    //                     format: "text",
-    //                   },
-    //                   {
-    //                     headers: {
-    //                       "Content-Type": "application/json",
-    //                     },
-    //                   }
-    //                 );
-          
-    //                 if (translationResponse.status === 200) {
-    //                   setTranslatedTranscript(translationResponse.data.translatedText);
-    //                 } else {
-    //                   throw new Error("Translation failed");
-    //                 }
-    //               } else {
-    //                 setTranslatedTranscript(text); // No translation needed
-    //               }
-    //             } catch (error) {
-    //               console.error("Error fetching or translating transcript:", error.message);
-    //             } finally {
-    //               setIsLoading(false);
-    //             }
-    //     };
-    //     if (jobId) {
-    //         fetchTranscript();
-    //       }
-          
-    //     }, [language, transcription]);
-    
-    // const fetchLanguages = async () => {
-    //     const url = 'https://lingvanex-translate.p.rapidapi.com/getLanguages?code=en_GB&platform=api';
-    //     const options = {
-    //       method: 'GET',
-    //       headers: {
-    //         'x-rapidapi-key': '74d58c52f7mshad736b390664c0bp1fbc07jsn859dd46dde9a',  // Your API key
-    //         'x-rapidapi-host': 'lingvanex-translate.p.rapidapi.com',  // Host for Lingvanex
-    //       },
-    //     };
-      
-    //     try {
-    //       const response = await axios(url, options);
-    //       console.log(response.data);  // The response data will be here
-    //     } catch (error) {
-    //       console.error('Error:', error);  // Catch and log any errors
-    //     }
-    //   };
-      
+
+    const handleSendEmail = () => {
+      const subject = encodeURIComponent('Check out this video!');
+      const body = encodeURIComponent(`Hi there, Here is a video I thought you might enjoy: ${playBack} \nBest regards,`);
+      window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    };
+
       
     const handleInputChange = (e) => {
       setNewVideoName(e.target.value);
@@ -156,39 +93,7 @@ const RecordedMedia = () => {
             const text = await response.text(); // Get the response as plain text
             setTranscript(text); setTranslatedTranscript(text);
     
-            // if (language !== 'en') {
-            //   // URL for translation using Lingvanex API
-            //   const translateUrl = 'https://lingvanex-translate.p.rapidapi.com/translate';
-    
-            //   // Prepare the request data for translation
-            //   const translationData = {
-            //     from: 'en_GB',   // Source language
-            //     to: language,    // Target language (from the `language` state)
-            //     data: text,      // The transcript text to translate
-            //     platform: 'api',
-            //   };
-    
-            //   const options = {
-            //     method: 'POST',
-            //     headers: {
-            //       'x-rapidapi-key': '74d58c52f7mshad736b390664c0bp1fbc07jsn859dd46dde9a', // API key
-            //       'x-rapidapi-host': 'lingvanex-translate.p.rapidapi.com', // API host
-            //       'Content-Type': 'application/json', // Set content type to JSON
-            //     },
-            //     data: translationData, // The translation data
-            //   };
-    
-            //   // Send the translation request
-            //   const translationResponse = await axios(translateUrl, options);
-    
-            //   if (translationResponse.status === 200) {
-            //     setTranslatedTranscript(translationResponse.data.translatedText); // Set the translated text
-            //   } else {
-            //     throw new Error('Translation failed');
-            //   }
-            // } else {
-            //   setTranslatedTranscript(text); // No translation needed if language is 'en'
-            // }
+            
           } catch (error) {
             console.error('Error fetching or translating transcript:', error.message);
           } finally {
@@ -256,8 +161,12 @@ const RecordedMedia = () => {
                     <div className='send-cont'>
                         <input 
                         placeholder='enter email of receiver'
-                        type='email' id='email'/>
-                        <button>
+                        value={recipientEmail}
+                        onChange={(e) => setRecipientEmail(e.target.value)}
+                        type='email' 
+                        id='email'
+                        />
+                        <button onClick={handleSendEmail}>
                             Send
                         </button>
                           
@@ -332,14 +241,14 @@ const RecordedMedia = () => {
                                 <span className='text'>{translatedTranscript || "No transcript available"}</span>
                             )}
                         </div>
-                        <div className='three subtitle'>
+                        {/* <div className='three subtitle'>
                             <span>0.03</span>
                             <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span>
                         </div>
                         <div className='four subtitle'>
                             <span>0.04</span>
                             <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span>
-                        </div>
+                        </div> */}
                         
                     </div>
                 </div>
@@ -347,8 +256,8 @@ const RecordedMedia = () => {
             <div className='create-account'>
                 <div className='cont4'>
                     <h4>To ensure the availability and privacy of your video, we recommend saving it to your account.</h4>
-                    <div><button>Save Video</button></div>
-                    <h1>Don&aspo;t have an account? <Link>Create account</Link></h1> 
+                    <div><button> <a href="/library">Save Video</a></button></div>
+                    <h1>Don't have an account? <a className='link' href='/signup'>Create account</a></h1> 
                 </div>
             </div>
             <Footer/>
