@@ -20,7 +20,7 @@ const RecordedMedia = () => {
   const playBack = searchParams.get('recording');
   // const transcription = searchParams.get('transcript');
   const [transcript, setTranscript] = useState(null);
-  const [translatedTranscript, setTranslatedTranscript] = useState(null);
+  // const [translatedTranscript, setTranslatedTranscript] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [language, setLanguage] = useState('en'); // Default language is English
   const [recipientEmail, setRecipientEmail] = useState('');
@@ -91,7 +91,8 @@ const RecordedMedia = () => {
             // Fetch the transcript text
             const response = await fetch(url);
             const text = await response.text(); // Get the response as plain text
-            setTranscript(text); setTranslatedTranscript(text);
+            setTranscript(text); 
+            // setTranslatedTranscript(text);
     
             
           } catch (error) {
@@ -127,6 +128,20 @@ const RecordedMedia = () => {
         }
       };
       
+      const facebookShare = (playBack) => {
+        const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(playBack)}`;
+        window.open(url, '_blank');
+      };
+        
+      const telegramShare = (playBack) => {
+        const url = `https://t.me/share/url?url=${encodeURIComponent(playBack)}`;
+        window.open(url, '_blank');
+      };
+        
+      const whatsappShare = (playBack) => {
+        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(playBack)}`;
+        window.open(url, '_blank');
+      };
       
       
     
@@ -187,19 +202,22 @@ const RecordedMedia = () => {
                         <h2>Share your video</h2>
                     </div>
                     <div className='socials-cont'>
-                        <button className='socials'>
+                        <button className='socials'
+                        onClick={() => facebookShare(playBack)}>
                             <div>
                                 <FB/>
                             </div>
                             <p>Facebook</p>
                         </button>
-                        <button className='socials'>
+                        <button className='socials'
+                        onClick={() => whatsappShare(playBack)}>
                             <div>
                                 <WhatsaApp/>
                             </div>
                             <p>WhatsApp</p>
                         </button>
-                        <button className='socials'>
+                        <button className='socials'
+                        onClick={() => telegramShare(playBack)}>
                             <div>
                                 <Telegram/>
                             </div>
@@ -234,13 +252,13 @@ const RecordedMedia = () => {
                             {/* <span>0.01</span>
                             <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span> */}
                         </div>
-                        <div className='two subtitle'>
+                        {/* <div className='two subtitle'>
                         {isLoading ? (
                                 <p>Loading transcript...</p>
                             ) : (
                                 <span className='text'>{translatedTranscript || "No transcript available"}</span>
                             )}
-                        </div>
+                        </div> */}
                         {/* <div className='three subtitle'>
                             <span>0.03</span>
                             <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span>

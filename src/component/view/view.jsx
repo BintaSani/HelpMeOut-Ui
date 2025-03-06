@@ -16,7 +16,7 @@ function View() {
     const [newVideoName, setNewVideoName] = useState('');
     const [language, setLanguage] = useState('en'); 
     const [transcript, setTranscript] = useState(null);
-    const [translatedTranscript, setTranslatedTranscript] = useState(null);
+    // const [translatedTranscript, setTranslatedTranscript] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [recipientEmail, setRecipientEmail] = useState('');
     
@@ -97,41 +97,9 @@ function View() {
                     // Fetch the transcript text
                     const response = await fetch(url);
                     const text = await response.text(); // Get the response as plain text
-                    setTranscript(text); setTranslatedTranscript(text);
+                    setTranscript(text);
+                    //  setTranslatedTranscript(text);
             
-                    // if (language !== 'en') {
-                    //   // URL for translation using Lingvanex API
-                    //   const translateUrl = 'https://lingvanex-translate.p.rapidapi.com/translate';
-            
-                    //   // Prepare the request data for translation
-                    //   const translationData = {
-                    //     from: 'en_GB',   // Source language
-                    //     to: language,    // Target language (from the `language` state)
-                    //     data: text,      // The transcript text to translate
-                    //     platform: 'api',
-                    //   };
-            
-                    //   const options = {
-                    //     method: 'POST',
-                    //     headers: {
-                    //       'x-rapidapi-key': '74d58c52f7mshad736b390664c0bp1fbc07jsn859dd46dde9a', // API key
-                    //       'x-rapidapi-host': 'lingvanex-translate.p.rapidapi.com', // API host
-                    //       'Content-Type': 'application/json', // Set content type to JSON
-                    //     },
-                    //     data: translationData, // The translation data
-                    //   };
-            
-                    //   // Send the translation request
-                    //   const translationResponse = await axios(translateUrl, options);
-            
-                    //   if (translationResponse.status === 200) {
-                    //     setTranslatedTranscript(translationResponse.data.translatedText); // Set the translated text
-                    //   } else {
-                    //     throw new Error('Translation failed');
-                    //   }
-                    // } else {
-                    //   setTranslatedTranscript(text); // No translation needed if language is 'en'
-                    // }
                   } catch (error) {
                     console.error('Error fetching or translating transcript:', error.message);
                   } finally {
@@ -144,7 +112,20 @@ function View() {
                   fetchTranscript();
                 // }
               }, [language, playBack ]); // Dependencies: language and transcription
-              
+    const facebookShare = (playBack) => {
+      const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(playBack)}`;
+      window.open(url, '_blank');
+    };
+      
+    const telegramShare = (playBack) => {
+      const url = `https://t.me/share/url?url=${encodeURIComponent(playBack)}`;
+      window.open(url, '_blank');
+    };
+      
+    const whatsappShare = (playBack) => {
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(playBack)}`;
+      window.open(url, '_blank');
+    };       
 
   return (
     <div className='view-container'>
@@ -201,13 +182,13 @@ function View() {
                 {/* <span>0.01</span>
                 <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span> */}
             </div>
-            <div className='two subtitle'>
+            {/* <div className='two subtitle'>
             {isLoading ? (
                     <p>Loading transcript...</p>
                 ) : (
                     <span className='text'>{translatedTranscript || "No transcript available"}</span>
                 )}
-            </div>
+            </div> */}
             {/* <div className='three subtitle'>
                 <span>0.03</span>
                 <span className='text'>First step. Open Facebook on your desktop or mobile device and locate "Marketplace" in the left-hand menu or at the top of the </span>
@@ -247,19 +228,22 @@ function View() {
             <h2>Share your video</h2>
         </div>
         <div className='socials-cont'>
-            <button className='socials'>
+            <button className='socials'
+            onClick={() => facebookShare(playBack)}>
                 <div>
                     <FB/>
                 </div>
                 <p>Facebook</p>
             </button>
-            <button className='socials'>
+            <button className='socials'
+            onClick={() => whatsappShare(playBack)}>
                 <div>
                     <WhatsaApp/>
                 </div>
                 <p>WhatsApp</p>
             </button>
-            <button className='socials'>
+            <button className='socials'
+            onClick={() => telegramShare(playBack)}>
                 <div>
                     <Telegram/>
                 </div>
